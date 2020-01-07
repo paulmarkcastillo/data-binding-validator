@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='org.bitbucket.ilhasoft'
+group='org.bitbucket.paulmarkcastillo'
 
 android {
     compileSdkVersion 28
