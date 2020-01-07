@@ -16,27 +16,23 @@
 
 package br.com.ilhasoft.support.validation.rule;
 
-import android.util.Patterns;
 import android.widget.TextView;
-
-import java.util.regex.Pattern;
 
 import br.com.ilhasoft.support.validation.util.EditTextHandler;
 
-public class EmailRule extends Rule<TextView, Boolean> {
+public class EmailRule extends Rule<TextView, String> {
 
     private static final int USERNAME_LENGTH =  64;
 
-    public EmailRule(TextView view, String errorMessage) {
-        super(view, null,  errorMessage);
+    public EmailRule(TextView view, String value, String errorMessage) {
+        super(view, value,  errorMessage);
     }
 
     @Override
     public boolean isValid(TextView view) {
         String emailValue = view.getText().toString();
         String username = emailValue.split("@")[0];
-        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
-        return username.length() <= USERNAME_LENGTH && emailPattern.matcher(view.getText()).matches();
+        return username.length() <= USERNAME_LENGTH && emailValue.matches(value);
     }
 
     @Override

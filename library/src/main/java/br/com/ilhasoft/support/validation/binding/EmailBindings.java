@@ -27,15 +27,15 @@ import br.com.ilhasoft.support.validation.util.ViewTagHelper;
 
 public class EmailBindings {
 
-    @BindingAdapter(value = {"validateEmailMessage", "validateEmailAutoDismiss"}, requireAll = false)
-    public static void bindingEmail(TextView view, String errorMessage, boolean autoDismiss) {
+    @BindingAdapter(value = {"validateEmailMessage", "validateEmailRegex", "validateEmailAutoDismiss"}, requireAll = false)
+    public static void bindingEmail(TextView view, String errorMessage, String regex, boolean autoDismiss) {
         if (autoDismiss) {
             EditTextHandler.disableErrorOnChanged(view);
         }
 
         String handledErrorMessage = ErrorMessageHelper.getStringOrDefault(view,
                 errorMessage, R.string.error_message_regex_validation);
-        ViewTagHelper.appendValue(R.id.validator_rule, view, new EmailRule(view, handledErrorMessage));
+        ViewTagHelper.appendValue(R.id.validator_rule, view, new EmailRule(view, regex, handledErrorMessage));
     }
 
 }
