@@ -22,17 +22,22 @@ import br.com.ilhasoft.support.validation.util.EditTextHandler;
 
 public class EmailRule extends Rule<TextView, String> {
 
-    private static final int USERNAME_LENGTH =  64;
+    private static final int USERNAME_LENGTH = 64;
 
     public EmailRule(TextView view, String value, String errorMessage) {
-        super(view, value,  errorMessage);
+        super(view, value, errorMessage);
     }
 
     @Override
     public boolean isValid(TextView view) {
         String emailValue = view.getText().toString();
-        String username = emailValue.split("@")[0];
-        return username.length() <= USERNAME_LENGTH && emailValue.matches(value);
+        String[] emailArr = emailValue.split("@");
+        if (emailArr.length > 0) {
+            return emailArr[0].length() <= USERNAME_LENGTH && emailValue.matches(value);
+        } else {
+            return false;
+        }
+
     }
 
     @Override
